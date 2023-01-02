@@ -61,6 +61,7 @@ public class Author {
         this.books = books;
     }
 
+    // overriding equals and hashCode for equality checking when using hibernate
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,5 +75,16 @@ public class Author {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    // providing my own toString method for debuggings
+    @Override
+    public String toString(){
+        return "Author{" +
+        "id: " + id +
+        ", firstName: " + firstName +
+        ", lastName: " + lastName +
+        ", books: " + books +
+        "}";
     }
 }
