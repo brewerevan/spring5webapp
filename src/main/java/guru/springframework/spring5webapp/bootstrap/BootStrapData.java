@@ -3,10 +3,9 @@ package guru.springframework.spring5webapp.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import guru.springframework.spring5webapp.domain.Author;
-import guru.springframework.spring5webapp.domain.Book;
-import guru.springframework.spring5webapp.domain.Publisher;
-import guru.springframework.spring5webapp.repositories.AddressRepository;
+import guru.springframework.spring5webapp.models.Author;
+import guru.springframework.spring5webapp.models.Book;
+import guru.springframework.spring5webapp.models.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
 import guru.springframework.spring5webapp.repositories.PublisherRepository;
@@ -19,13 +18,11 @@ public class BootStrapData implements CommandLineRunner { // Spring looks for in
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
-    private final AddressRepository addressRepository;
 
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository, AddressRepository addressRepository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
-        this.addressRepository = addressRepository;
     }
 
     @Override
@@ -58,6 +55,5 @@ public class BootStrapData implements CommandLineRunner { // Spring looks for in
         System.out.println("Number of Authors: " + authorRepository.count());
         System.out.println("Number of Books: " + bookRepository.count());
         System.out.println("Number of Publishers: " + publisherRepository.count());
-        System.out.println("Number of Addresses: " + addressRepository.count());
     }
 }
