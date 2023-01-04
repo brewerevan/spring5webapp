@@ -53,7 +53,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public Set getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
