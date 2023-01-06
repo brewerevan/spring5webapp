@@ -27,33 +27,45 @@ public class BootStrapData implements CommandLineRunner { // Spring looks for in
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("Started in Bootsrap");
 
-        Author eric = new Author("Eric", "Evans");
-        Book ddd = new Book("Domain Driven Design", "123123");
+        // create publisher
+        Publisher publisher = new Publisher();
+        publisher.setName("Publisher");
+        publisher.setStreet("Street");
+        publisher.setCity("City");
+        publisher.setState("State");
+        publisher.setZip("12345");
 
-        Publisher bob = new Publisher("Bob's Books", "street", "city", "state", "12345");
-        publisherRepository.save(bob);
+        // save publisher
+        publisherRepository.save(publisher);
 
-        eric.getBooks().add(ddd); // Add ddd to eric's books
-        ddd.getAuthors().add(eric); // add eric to book's authors
+        // create Author
+        Author author = new Author();
+        author.setFirstName("FN");
+        author.setLastName("LN");
 
+        authorRepository.save(author);
 
-        ddd.setPublisher(bob);
+        // create Book
+        Book book = new Book();
 
-        authorRepository.save(eric); // save eric into the DB
-        bookRepository.save(ddd); // save ddd into the DB
+        // add author and publisher to book then save
+        book.getAuthors().add(author);
+        book.setPublisher(publisher);
+        bookRepository.save(book);
 
-        Author rod = new Author("Rod", "Johnson");
-        Book noEJB = new Book("J22EE Development without EJB", "3939459459");
-        rod.getBooks().add(noEJB);
-        noEJB.getAuthors().add(rod);
+        // add book to author
+        author.getBooks().add(book);
+        authorRepository.save(author);
 
-        authorRepository.save(rod); // don't forget to save rod
-        bookRepository.save(noEJB); // don't forget to save noEJB
+        // add book to publisher
+        publisher.getBooks().add(book);
+        publisherRepository.save(publisher);
 
-        System.out.println("Started in Bootstrap");
+        // print out statistics
         System.out.println("Number of Authors: " + authorRepository.count());
-        System.out.println("Number of Books: " + bookRepository.count());
+        System.out.println("Number of Books: "+ bookRepository.count());
         System.out.println("Number of Publishers: " + publisherRepository.count());
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class Book {
     private String title;
     private String isbn;
 
+    @ManyToOne
     private Publisher publisher;
 
     @ManyToMany // author has many books, book has many authors
