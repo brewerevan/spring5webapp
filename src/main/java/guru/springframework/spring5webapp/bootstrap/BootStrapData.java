@@ -49,7 +49,8 @@ public class BootStrapData implements CommandLineRunner { // Spring looks for in
 
         // create Book
         Book book = new Book();
-
+        book.setTitle("Title");
+        book.setIsbn("123456789");
         // add author and publisher to book then save
         book.getAuthors().add(author);
         book.setPublisher(publisher);
